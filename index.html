@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PackTogether - Vibrant Version</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+
+<body class="bg-gray-50 text-gray-800 scroll-smooth">
+
+<!-- ================= HEADER ================= -->
+<header class="bg-white shadow-md fixed w-full z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2 text-indigo-600 text-xl font-bold">
+      <i class="fa-solid fa-suitcase-rolling"></i> PackTogether
+    </div>
+
+    <nav class="hidden md:flex space-x-6 font-medium">
+      <a href="#features" class="hover:text-indigo-800 transition">Features</a>
+      <a href="#about" class="hover:text-teal-800 transition">About</a>
+      <a href="#packing" class="hover:text-amber-800 transition">Packing List</a>
+      <a href="#faq" class="hover:text-rose-600 transition">FAQ</a>
+    </nav>
+
+    <button onclick="scrollToFeatures()"
+      class="hidden md:block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+      Get Started
+    </button>
+
+    <button class="md:hidden text-xl" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="hidden bg-white border-t md:hidden">
+    <a href="#features" class="block px-6 py-3 hover:bg-indigo-50">Features</a>
+    <a href="#about" class="block px-6 py-3 hover:bg-teal-50">About</a>
+    <a href="#packing" class="block px-6 py-3 hover:bg-amber-50">Packing List</a>
+    <a href="#faq" class="block px-6 py-3 hover:bg-rose-50">FAQ</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="pt-28 bg-gradient-to-r from-indigo-500 to-indigo-700 text-white text-center">
+  <div class="max-w-4xl mx-auto px-6 py-24">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6 drop-shadow-lg">Travel Together. Pack Smarter.</h1>
+    <p class="text-lg md:text-xl mb-8 drop-shadow-sm">
+      Plan, organize, and pack as a group — without stress or last-minute chaos.
+    </p>
+    <button onclick="scrollToFeatures()"
+      class="bg-white text-indigo-700 px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-gray-100 transition">
+      Explore Features
+    </button>
+  </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section id="features" class="py-20 bg-indigo-100">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-indigo-800">Features</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div onclick="activateFeature(this)"
+        class="feature-card bg-white p-8 rounded-2xl shadow-lg cursor-pointer hover:shadow-xl transition">
+        <i class="fa-solid fa-list-check text-indigo-600 text-4xl mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Shared Lists</h3>
+        <p class="text-gray-700">Everyone stays in sync with your packing list.</p>
+      </div>
+
+      <div onclick="activateFeature(this)"
+        class="feature-card bg-white p-8 rounded-2xl shadow-lg cursor-pointer hover:shadow-xl transition">
+        <i class="fa-solid fa-layer-group text-indigo-500 text-4xl mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Smart Categories</h3>
+        <p class="text-gray-700">Organize items by person, day, or activity easily.</p>
+      </div>
+
+      <div onclick="activateFeature(this)"
+        class="feature-card bg-white p-8 rounded-2xl shadow-lg cursor-pointer hover:shadow-xl transition">
+        <i class="fa-solid fa-face-smile text-indigo-400 text-4xl mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Stress-Free Travel</h3>
+        <p class="text-gray-700">Focus on fun while we handle planning chaos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT US ================= -->
+<section id="about" class="py-20 bg-teal-100">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-6 text-teal-800">
+      <i class="fa-solid fa-people-group mr-2"></i> About Us
+    </h2>
+    <p class="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+      PackTogether was created to make group travel easy and enjoyable. Our mission
+      is to help friends, families, and teams collaborate on packing lists so
+      nothing is forgotten and no one overpacks.
+      <br><br>
+      Our tools are simple, visual, and stress-free, letting you focus on making
+      memories while we handle the details.
+    </p>
+  </div>
+</section>
+
+<!-- ================= PACKING LIST ================= -->
+<section id="packing" class="py-20 bg-amber-50">
+  <div class="max-w-xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-8 text-amber-700">
+      <i class="fa-solid fa-box-open mr-2"></i>Packing List
+    </h2>
+
+    <div class="flex gap-2 mb-6">
+      <input id="itemInput" type="text" placeholder="Add item..."
+        class="flex-1 border rounded-lg px-4 py-2"/>
+      <button onclick="addItem()"
+        class="bg-amber-600 text-white px-4 rounded-lg hover:bg-amber-700 transition">
+        Add
+      </button>
+    </div>
+
+    <ul id="itemList" class="space-y-3"></ul>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" class="py-20 bg-rose-50">
+  <div class="max-w-3xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-10 text-rose-600">
+      Frequently Asked Questions
+    </h2>
+
+    <div class="space-y-4">
+      <div class="bg-white p-5 rounded-xl shadow hover:shadow-lg transition">
+        <button onclick="toggleFAQ(this)"
+          class="flex justify-between w-full font-semibold text-gray-800">
+          Is PackTogether free?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <p class="hidden mt-3 text-gray-600">
+          Yes, PackTogether offers a free version for basic packing lists.
+        </p>
+      </div>
+
+      <div class="bg-white p-5 rounded-xl shadow hover:shadow-lg transition">
+        <button onclick="toggleFAQ(this)"
+          class="flex justify-between w-full font-semibold text-gray-800">
+          Can multiple people edit the list?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <p class="hidden mt-3 text-gray-600">
+          Yes, lists are designed for group collaboration.
+        </p>
+      </div>
+
+      <div class="bg-white p-5 rounded-xl shadow hover:shadow-lg transition">
+        <button onclick="toggleFAQ(this)"
+          class="flex justify-between w-full font-semibold text-gray-800">
+          Is my data saved?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <p class="hidden mt-3 text-gray-600">
+          This demo runs locally. Backend sync can be added.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-gray-900 text-gray-400 text-center py-8">
+  <p>&copy; 2026 PackTogether. All rights reserved.</p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+  function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+  }
+
+  function scrollToFeatures() {
+    document.getElementById("features").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function activateFeature(card) {
+    document.querySelectorAll(".feature-card")
+      .forEach(c => c.classList.remove("ring-4","ring-indigo-400"));
+    card.classList.add("ring-4","ring-indigo-400");
+  }
+
+  // Packing List
+  function addItem() {
+    const input = document.getElementById("itemInput");
+    if (!input.value.trim()) return;
+
+    const li = document.createElement("li");
+    li.className = "flex justify-between items-center bg-white p-3 rounded-lg shadow-sm";
+
+    li.innerHTML = `
+      <label class="flex items-center gap-2">
+        <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('line-through')">
+        <span>${input.value}</span>
+      </label>
+      <button onclick="this.parentElement.remove()"
+        class="text-red-500 hover:text-red-700">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    `;
+
+    document.getElementById("itemList").appendChild(li);
+    input.value = "";
+  }
+
+  // FAQ
+  function toggleFAQ(button) {
+    button.nextElementSibling.classList.toggle("hidden");
+  }
+</script>
+
+</body>
+</html>
